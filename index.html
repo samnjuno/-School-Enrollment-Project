@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Success Stories</title>
+</head>
+<body>
+  <h1>Student Success Stories</h1>
+  <div id="student-list"></div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    // Example API endpoint to fetch student data (assuming server-side code is ready)
+    fetch('http://localhost:3000/students')
+      .then(response => response.json())
+      .then(data => {
+        const studentList = document.getElementById('student-list');
+        studentList.innerHTML = data.map(student => `
+          <p>${student.first_name} ${student.last_name}: ${student.class_name} - ${student.grade}</p>
+        `).join('');
+      })
+      .catch(error => console.error('Error fetching data:', error));
+  </script>
+</body>
+</html>
